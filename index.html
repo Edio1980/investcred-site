@@ -1,2 +1,102 @@
-<h1>Site da Investcred</h1>
-<p>Em breve você poderá simular seu empréstimo diretamente por aqui!</p>
+
+from zipfile import ZipFile
+import os
+
+# Recriar a pasta e o novo index.html após o reset
+site_folder = "/mnt/data/investcred-site-v2"
+os.makedirs(site_folder, exist_ok=True)
+
+# HTML com layout profissional
+index_html = """
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investcred Soluções Financeiras</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        header {
+            background-color: #3fa36c;
+            color: white;
+            text-align: center;
+            padding: 1.5em;
+        }
+        section {
+            padding: 2em;
+        }
+        h1, h2 {
+            margin: 0 0 0.5em;
+        }
+        .section-box {
+            background: white;
+            padding: 1em;
+            border-radius: 8px;
+            margin-bottom: 1.5em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Investcred Soluções Financeiras</h1>
+        <p>Empréstimo fácil, rápido e seguro.</p>
+    </header>
+
+    <section>
+        <div class="section-box">
+            <h2>Empréstimo com FGTS</h2>
+            <p>Antecipe até 10 parcelas do seu saque-aniversário com taxas acessíveis e dinheiro na conta em poucas horas.</p>
+        </div>
+        <div class="section-box">
+            <h2>Empréstimo para Aposentados e Pensionistas</h2>
+            <p>Crédito com desconto direto no benefício do INSS, com parcelas que cabem no bolso.</p>
+        </div>
+        <div class="section-box">
+            <h2>Empréstimo na Conta de Luz</h2>
+            <p>Simples, rápido e sem consulta ao SPC/Serasa. A parcela vem na conta da CPFL!</p>
+        </div>
+    </section>
+
+    <a class="whatsapp" href="https://wa.me/5516996480546" target="_blank">Fale conosco</a>
+
+    <footer>
+        <p>&copy; 2025 Investcred Soluções Financeiras</p>
+    </footer>
+</body>
+</html>
+"""
+
+# Salvar o HTML no novo diretório
+with open(os.path.join(site_folder, "index.html"), "w", encoding="utf-8") as f:
+    f.write(index_html)
+
+# Compactar em ZIP
+zip_path = "/mnt/data/investcred-site-v2.zip"
+with ZipFile(zip_path, "w") as zipf:
+    zipf.write(os.path.join(site_folder, "index.html"), arcname="index.html")
+
+zip_path
